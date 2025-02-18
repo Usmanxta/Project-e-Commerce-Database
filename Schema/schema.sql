@@ -81,3 +81,37 @@ CREATE TABLE admins (
 );
 
 */
+
+-- NOW ADDING FOREIGN KEYS
+
+-- ALTER TABLE orders 
+-- ADD CONSTRAINT fk_orders_user FOREIGN KEY (user_id) REFERENCES users(user_id);
+
+-- ALTER TABLE order_items 
+-- ADD CONSTRAINT fk_order_items_order FOREIGN KEY (order_id) REFERENCES orders(order_id),
+-- ADD CONSTRAINT fk_order_items_product FOREIGN KEY (product_id) REFERENCES products(product_id);
+
+-- ALTER TABLE payments 
+-- ADD CONSTRAINT fk_payments_order FOREIGN KEY (order_id) REFERENCES orders(order_id);
+
+-- ALTER TABLE reviews 
+-- ADD CONSTRAINT fk_reviews_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+-- ADD CONSTRAINT fk_reviews_product FOREIGN KEY (product_id) REFERENCES products(product_id);
+
+-- ALTER TABLE products add column category_id int not null
+/*
+ALTER TABLE categories
+ADD CONSTRAINT fk_cotegories_product FOREIGN KEY (category_id) REFERENCES products(category_id);
+ 
+ --> I dont know why but i cannot establish the foeign key between 
+ categories and product table i will try another way 
+ */
+ -- alter table products add column category_id int after stock_quantity 
+
+-- alter table categories add column
+-- category_id int primary key not null auto_increment first 
+-- ALTER TABLE categories
+-- ADD CONSTRAINT fk_cotegories_product FOREIGN KEY (category_id) REFERENCES products(category_id);
+/* i have now tried so many ways to fix it... i will try to fix this 
+issue some other day... for now lets just call it a day 
+*/
