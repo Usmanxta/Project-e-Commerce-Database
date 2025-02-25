@@ -1,9 +1,9 @@
--- CREATE DATABASE e_commerce_db
--- USE e_commerse_db
+-- CREATE DATABASE e_commerce_db2;
 
-/*
 
-CREATE TABLE users (
+
+
+/*CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -12,24 +12,30 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-CREATE TABLE products (
-    product_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(200) NOT NULL,
-    description TEXT,
-    price DECIMAL(10,2) NOT NULL,
-    stock_quantity INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
 CREATE TABLE categories (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    
 );
+*/
+/*
+CREATE TABLE products (
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(200) NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2) NOT NULL,
+    stock_quantity INT NOT NULL,
+    category_id int,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    foreign key (category_id) references categories (category_id)
+    
+);
+
+
 
 CREATE TABLE orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -79,15 +85,15 @@ CREATE TABLE admins (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
 */
+
 
 -- NOW ADDING FOREIGN KEYS
 
 -- ALTER TABLE orders 
 -- ADD CONSTRAINT fk_orders_user FOREIGN KEY (user_id) REFERENCES users(user_id);
 
--- ALTER TABLE order_items 
+ -- ALTER TABLE order_items 
 -- ADD CONSTRAINT fk_order_items_order FOREIGN KEY (order_id) REFERENCES orders(order_id),
 -- ADD CONSTRAINT fk_order_items_product FOREIGN KEY (product_id) REFERENCES products(product_id);
 
@@ -98,20 +104,6 @@ CREATE TABLE admins (
 -- ADD CONSTRAINT fk_reviews_user FOREIGN KEY (user_id) REFERENCES users(user_id),
 -- ADD CONSTRAINT fk_reviews_product FOREIGN KEY (product_id) REFERENCES products(product_id);
 
--- ALTER TABLE products add column category_id int not null
-/*
-ALTER TABLE categories
-ADD CONSTRAINT fk_cotegories_product FOREIGN KEY (category_id) REFERENCES products(category_id);
- 
- --> I dont know why but i cannot establish the foeign key between 
- categories and product table i will try another way 
- */
- -- alter table products add column category_id int after stock_quantity 
-
--- alter table categories add column
--- category_id int primary key not null auto_increment first 
--- ALTER TABLE categories
--- ADD CONSTRAINT fk_cotegories_product FOREIGN KEY (category_id) REFERENCES products(category_id);
-/* i have now tried so many ways to fix it... i will try to fix this 
-issue some other day... for now lets just call it a day 
-*/
+/* previously i could not establish foreign key between products and categories at category_id because i forgot to add 
+category_id in prosucts table so it messed up the sequence parent and child relationship which is very important for 
+foreign keys so i had to drop those table and make them all over again and added the foreign keys at creation time of the table */
